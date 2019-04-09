@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1"/>
+    <title>html5</title>
+</head>
+<body>
+<canvas id="mycanvas" width="200" height="100" style="border: 1px solid #d3d3d3">
+    您的浏览器不支持html5 canvas 标签</canvas>
+
+<script>
+    var c= document.getElementById("mycanvas");
+    var ctx= c.getContext("2d");
+    ctx.font="30px Arial";
+    ctx.strokeText("Hello World" , 10 ,50);
+</script>
+
+<!--2-->
+<p>Image to use:</p>
+<img id="scream" src=" http://www.runoob.com/try/demo_source/img_the_scream.jpg" alt="The Scream" width="220" height="277"><p>Canvas:</p>
+<canvas id="myCanvas2" width="250" height="300" style="border:1px solid #d3d3d3;">
+    您的浏览器不支持 HTML5 canvas 标签。</canvas>
+<script>
+    var c=document.getElementById("myCanvas2");
+    var ctx=c.getContext("2d");
+    var img=document.getElementById("scream");
+
+    img.onload = function() {
+        ctx.drawImage(img,10,10);
+    }
+
+</script>
+
+<!--drag-->
+<style type="text/css">
+    #div1, #div2
+    {float:left; width:100px; height:35px; margin:10px;padding:10px;border:1px solid #aaaaaa;}
+</style>
+
+<div id="div1" ondrop="drop(event)" ondragover="allowDrop(event)">
+    <img src="http://www.runoob.com/try/demo_source/img_the_scream.jpg" draggable="true" ondragstart="drag(event)" id="drag1" width="88" height="31"></div>
+<div id="div2" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+
+
+<script>
+    function allowDrop(ev)
+    {
+        ev.preventDefault();
+    }
+
+    function drag(ev)
+    {
+        ev.dataTransfer.setData("Text",ev.target.id);
+    }
+
+    function drop(ev)
+    {
+        ev.preventDefault();
+        var data=ev.dataTransfer.getData("Text");
+        ev.target.appendChild(document.getElementById(data));
+    }
+</script>
+
+
+<video width="320px" height="240px" controls>
+    <source src="http://www.runoob.com/try/demo_source/movie.mp4" type="video/mp4">
+    <source src="http://www.runoob.com/try/demo_source/movie.mp4" type="video/ogg">
+</video>
+
+<!--int-->
+<div style="text-align: center ;padding: 70px">
+    <button onclick="playPause()">播放/暂停</button>
+    <button onclick="makeBig()">放大</button>
+    <button onclick="makeSmall()">缩小</button>
+    <button onclick="makeNormal()">正常</button>
+    <video id="video1" width="420">
+        <source src="http://www.runoob.com/try/demo_source/mov_bbb.mp4" type="video/mp4">
+        <source src="http://www.runoob.com/try/demo_source/mov_bbb.mp4" type="video/ogg">
+        您的浏览器不支持
+    </video>
+
+    <script>
+        var myVideo= document.getElementById("video1");
+        function playPause() {
+            if(myVideo.paused)
+                myVideo.play();
+            else
+                myVideo.pause();
+        }
+
+        function makeBig() {
+            myVideo.width=560;
+        }
+        function makeSmall() {
+            myVideo.width=320;
+
+        }
+        function makeNormal() {
+            myVideo.width=420;
+
+        }
+        if(typeof(Storage)!=="undefined")
+        {
+            // 是的! 支持 localStorage  sessionStorage 对象!
+            // 一些代码.....
+        } else {
+            // 抱歉! 不支持 web 存储。
+        }
+    </script>
+
+
+    <form action="demo_form.php" style="margin-top: 40px">
+        选择你喜欢的颜色：<input type="color" name="favcolor"><br>
+        <input type="date" name="body">
+        <input type="submit">
+
+    </form>
+
+</div>
+</body>
+</html>
